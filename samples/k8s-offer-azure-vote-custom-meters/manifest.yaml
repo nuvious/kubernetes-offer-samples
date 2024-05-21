@@ -1,7 +1,7 @@
 applicationName: com.contoso.azurevotecustom
 publisher: "MicrosoftTest"
-description: "A test package for the marketplace CNAB structure with existing or new cluster."
-version: 1.1.1 #Must be in the format of #.#.#
+description: "A test package for the marketplace CNAB structure with existing or new cluster. Now with subcharts!"
+version: 1.1.2 #Must be in the format of #.#.#
 helmChart: "./azure-vote-custom"
 clusterArmTemplate: "./mainTemplate.json"
 uiDefinition: "./createUIDefinition.json"
