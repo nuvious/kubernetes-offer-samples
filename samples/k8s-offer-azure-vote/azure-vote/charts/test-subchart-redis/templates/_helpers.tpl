@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "test-subchart-nginx.name" -}}
+{{- define "test-subchart-redis.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "test-subchart-nginx.fullname" -}}
+{{- define "test-subchart-redis.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "test-subchart-nginx.chart" -}}
+{{- define "test-subchart-redis.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "test-subchart-nginx.labels" -}}
-helm.sh/chart: {{ include "test-subchart-nginx.chart" . }}
-{{ include "test-subchart-nginx.selectorLabels" . }}
+{{- define "test-subchart-redis.labels" -}}
+helm.sh/chart: {{ include "test-subchart-redis.chart" . }}
+{{ include "test-subchart-redis.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "test-subchart-nginx.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "test-subchart-nginx.name" . }}
+{{- define "test-subchart-redis.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "test-subchart-redis.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "test-subchart-nginx.serviceAccountName" -}}
+{{- define "test-subchart-redis.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "test-subchart-nginx.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "test-subchart-redis.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "test-subchart-nginx.fullname" . }}
+  name: {{ include "test-subchart-redis.fullname" . }}
   labels:
-    {{- include "test-subchart-nginx.labels" . | nindent 4 }}
+    {{- include "test-subchart-redis.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "test-subchart-nginx.selectorLabels" . | nindent 6 }}
+      {{- include "test-subchart-redis.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "test-subchart-nginx.labels" . | nindent 8 }}
+        {{- include "test-subchart-redis.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -27,7 +27,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "test-subchart-nginx.serviceAccountName" . }}
+      serviceAccountName: {{ include "test-subchart-redis.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
