@@ -13,7 +13,7 @@ global:
         tag: alpine
         image: redis
         registry: docker.io/library
-      test-subchart-nginx:
+      test-subchart-redis:
         tag: alpine
         image: redis
         registry: docker.io/library
