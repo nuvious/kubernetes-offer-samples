@@ -14,8 +14,8 @@ global:
         image: redis
         registry: docker.io/library
       test-subchart-nginx:
-        tag: latest
-        image: nginx
+        tag: alpine
+        image: redis
         registry: docker.io/library
 # how many frontends do we want?
 replicaCount: 1
